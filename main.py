@@ -12,7 +12,8 @@ json_config_file = 'config.json'
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG)
+    #logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.INFO)
 
     logging.info('loading account and stock configuration file : ' + json_config_file)
     with open(json_config_file) as f:
