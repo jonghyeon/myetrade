@@ -1,0 +1,42 @@
+{
+  "order_id": 14,
+  "accounts": [
+    {
+      "cash_to_trade": 55.98,
+      "id": "$account_id",
+      "net_value": 5024.84,
+      "mode": "run",
+      "available_mode": [
+        "setup",
+        "run",
+        "stop"
+      ],
+      "stocks": [
+        {
+          "symbol": "AAPL",
+          "trade_share": 0.5,
+          "value": 191.8,
+          "last_value": 191.87,
+          "last_sell_price": 191.8,
+          "last_buy_price": 191.8,
+          "count": 0,
+          "last_count": 0,
+          "algorithm": "ahnyung",
+          "stance": "moderate"
+        },
+        {
+          "symbol": "MSFT",
+          "trade_share": 0.5,
+          "value": 101.19,
+          "last_value": 101.19,
+          "last_sell_price": 101.19,
+          "last_buy_price": 101.19,
+          "count": 0,
+          "last_count": 0,
+          "algorithm": "ahnyung",
+          "stance": "moderate"
+        }
+      ]
+    }
+  ]
+}

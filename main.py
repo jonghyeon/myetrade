@@ -31,12 +31,6 @@ if __name__ == '__main__':
         exit(-1)
     logging.info('logged in')
 
-    result = client.renew_connection()
-    if not result:
-        logging.error('renew failed')
-        exit(-1)
-    logging.info('renew success')
-
     alg_ahnyung = AhnyungAlgorithm()
     alg_fill = FillAlgorithm()
 
