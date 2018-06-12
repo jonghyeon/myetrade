@@ -9,6 +9,7 @@ from algorithms import AhnyungAlgorithm, FillAlgorithm
 import algorithms
 
 json_config_file = 'config.json'
+LOG_FORMAT = '%(asctime)-15s %(message)s'
 
 
 def load_json_account(json_account, account):
@@ -46,10 +47,9 @@ def store_json_stock(json_stock, stock):
 
 
 if __name__ == '__main__':
-    #logging.basicConfig(level=logging.DEBUG)
-    logging.basicConfig(filename='etrade.log', filemode='w', level=logging.INFO)
+    logging.basicConfig(filename='etrade.log', format=LOG_FORMAT, level=logging.INFO)
 
-    logging.info('loading account and stock configuration file : ' + json_config_file)
+    logging.debug('loading account and stock configuration file : ' + json_config_file)
     with open(json_config_file) as f:
         config = json.load(f)
 
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     if not result:
         logging.error('login failed')
         exit(-1)
-    logging.info('logged in')
+    logging.debug('logged in')
 
     alg_ahnyung = AhnyungAlgorithm()
     alg_fill = FillAlgorithm()
@@ -120,7 +120,7 @@ if __name__ == '__main__':
     with open(json_config_file, 'w') as outfile:
         json.dump(config, outfile, indent=2, sort_keys=False)
 
-    logging.info('logging out')
     result = client.logout()
+    logging.debug('logged out')
 
 
