@@ -8,6 +8,7 @@ from python_etrade.stocks import Stock
 from algorithms import AhnyungAlgorithm, FillAlgorithm
 import algorithms
 
+
 json_config_file = 'config.json'
 LOG_FORMAT = '%(asctime)-15s %(message)s'
 
@@ -74,6 +75,8 @@ if __name__ == '__main__':
         account = client.get_account(json_account['id'])
         load_json_account(json_account, account)
 
+        buy_failed = False
+
         for json_stock in json_account['stocks']:
             stock = account.get_stock(json_stock['symbol'])
             if not stock:
@@ -98,9 +101,11 @@ if __name__ == '__main__':
                 stock.last_count = stock.count
 
             if decision > 0:
-                stock.market_order(decision, order_id)
+                if not stock.market_order(decision, order_id):
+                    buy_failed = True
             elif decision < 0:
-                stock.market_order(decision, order_id)
+                if not stock.market_order(decision, order_id):
+                    buy_failed = True
 
             if decision != 0:
                 order_id += 1
@@ -110,7 +115,7 @@ if __name__ == '__main__':
 
             store_json_stock(json_stock, stock)
 
-        if account.mode == 'setup':
+        if not buy_failed and account.mode == 'setup':
             account.mode = 'run'
 
         store_json_account(json_account, account)

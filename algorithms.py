@@ -2,7 +2,7 @@
 
 CONSERVATIVE = 0
 MODERATE = 1
-AGGRESSIVE = 2
+AGGRESSIVE = 2          # more frequent trading
 
 
 class TradeAlgorithm:
@@ -11,9 +11,9 @@ class TradeAlgorithm:
 
 
 ahnyung_variables = [
-    {"day_low": -0.01, "overall_low": -0.02, "buy_again": -0.07, "over_sell": 0.03},
+    {"day_low": -0.01, "overall_low": -0.02, "buy_again": -0.07, "over_sell": 0.05},
     {"day_low": -0.01, "overall_low": -0.015, "buy_again": -0.06, "over_sell": 0.04},
-    {"day_low": -0.01, "overall_low": -0.01, "buy_again": -0.05, "over_sell": 0.05},
+    {"day_low": -0.01, "overall_low": -0.01, "buy_again": -0.05, "over_sell": 0.03},
 ]
 
 
@@ -47,3 +47,8 @@ class FillAlgorithm(TradeAlgorithm):
         total_value = stock.get_total_value()
         overflow = total_value - stock.budget
         return -int(overflow / stock.value)
+
+
+class EmptyAlgorithm(TradeAlgorithm):
+    def trade_decision(self, stock):
+        return -stock.count
